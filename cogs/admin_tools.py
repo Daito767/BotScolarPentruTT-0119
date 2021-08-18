@@ -63,7 +63,7 @@ class AdminTools(commands.Cog):
 		while activity_type is None or status_type is None:
 			try:
 				event = await self.client.wait_for('select_option', timeout=39, check=check)
-				await event.respond(type=4)
+				await event.respond(type=6)
 				value = event.values[0]
 			except asyncio.TimeoutError:
 				await the_bot_msg.delete()
