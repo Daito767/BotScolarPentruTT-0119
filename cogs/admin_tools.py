@@ -5,7 +5,7 @@ import config
 import asyncio
 from discord.ext import commands, tasks
 import main
-from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType, Select, SelectOption
+from discord_components import DiscordComponents, Button, ButtonStyle, Select, SelectOption
 
 
 class AdminTools(commands.Cog):
@@ -63,8 +63,8 @@ class AdminTools(commands.Cog):
 		while activity_type is None or status_type is None:
 			try:
 				event = await self.client.wait_for('select_option', timeout=39, check=check)
-				await event.respond(type=InteractionType.DeferredUpdateMessage)
-				value = event.interacted_component[0].value
+				await event.respond(type=4)
+				value = event.values[0]
 			except asyncio.TimeoutError:
 				await the_bot_msg.delete()
 				await ctx.message.delete()

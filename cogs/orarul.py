@@ -6,7 +6,7 @@ import datetime
 import discord
 import discord.ext
 from discord.ext import commands, tasks
-from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
+from discord_components import DiscordComponents, Button, ButtonStyle
 
 
 def get_schedule_on_weekday(mention, day):

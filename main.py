@@ -5,7 +5,7 @@ import asyncio
 import discord
 import discord.ext
 from discord.ext import commands, tasks
-from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
+from discord_components import DiscordComponents, Button, ButtonStyle
 
 TOKEN = ''
 if 'local_config.py' in os.listdir('.'):
