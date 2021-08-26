@@ -2,21 +2,19 @@ import config
 import os
 import inspect
 import asyncio
+import keep_alive
+import DBSchool
 import discord
 import discord.ext
 from discord.ext import commands, tasks
 from discord_components import DiscordComponents, Button, ButtonStyle
 
-TOKEN = ''
-if 'local_config.py' in os.listdir('.'):
-	import local_config
-	TOKEN = local_config.TOKEN
-else:
-	TOKEN = config.get_token()
-
+# ODO: Adauga alternativa a functiilor din orar
+# ODO: Pune in try importarea discord_components pentru stabilitate
 
 intents = discord.Intents().all()
 client = commands.Bot(command_prefix='!', case_insensitive=True)
+mydb = DBSchool.ConnectToDB(config.db_host, config.db_user, config.db_password, config.db_name)
 
 client.remove_command("help")
 cog_names = []
@@ -33,10 +31,10 @@ def is_command_allowed(func):
 		if ctx.author.bot:
 			return
 
-		if ctx.channel.id == 753531622757761105 or str(ctx.author) == 'Daito#8141':
+		if ctx.channel.id == config.command_channel_id or str(ctx.author) == config.server_owner:
 			await func(*args, **kwargs)
 		elif ctx.channel.type is discord.ChannelType.private:
-			await ctx.channel.send(f'Salut {ctx.author.mention}, nu aveți permisiunea de a executa comenzi înafara serverului.')
+			await ctx.channel.send(f'Salut {ctx.author.mention}, nu aveți permisiunea de a executa comenzi înafara canalului `comenzi`.')
 		else:
 			await ctx.message.delete()
 
@@ -55,7 +53,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message: discord.Message):
-	if message.author.bot and str(message.channel.id) != '754018313029288127' and str(message.channel.id) != '753531622757761105':
+	if message.author.bot and message.channel.id != config.music_channel_id and message.channel.id != config.command_channel_id:
 		if str(message.author) != 'ZyBot#3764' and str(message.author) != 'DyBot#6312':
 			await message.delete()
 			return
@@ -105,7 +103,7 @@ async def cogs(ctx, *args):
 
 		for arg in args:
 			if response.component.id == 'load':
-				if not f'{arg}.py' in os.listdir('./cogs'):
+				if f'{arg}.py' not in os.listdir('./cogs'):
 					await ctx.channel.send(f'**[ERROR]** Salut {ctx.author.mention}. Cog-ul: "{arg}" nu exitsa.', components=[])
 				elif arg in cog_names:
 					await ctx.channel.send(f'**[ERROR]** Salut {ctx.author.mention}. Cog-ul: "{arg}" a fost deja incarcat.', components=[])
@@ -114,7 +112,7 @@ async def cogs(ctx, *args):
 					cog_names.append(arg)
 					args_without_error.append(arg)
 			elif response.component.id == 'reload':
-				if not f'{arg}.py' in os.listdir('./cogs'):
+				if f'{arg}.py' not in os.listdir('./cogs'):
 					await ctx.channel.send(f'**[ERROR]** Salut {ctx.author.mention}. Cog-ul: "{arg}" nu exitsa.', components=[])
 				elif arg not in cog_names:
 					await ctx.channel.send(f'**[ERROR]** Salut {ctx.author.mention}. Cog-ul: "{arg}" nu a fost incarcat.', components=[])
@@ -138,4 +136,10 @@ for filename in os.listdir('./cogs'):
 		client.load_extension(f'cogs.{filename[:-3]}')
 		cog_names.append(filename[:-3])
 
-client.run(TOKEN)
+if not config.is_local_run:
+	keep_alive.keep_alive()
+	mydb.add_startup_log()
+
+mydb.add_startup_log()  # Pentru testare.
+
+client.run(config.TOKEN)
