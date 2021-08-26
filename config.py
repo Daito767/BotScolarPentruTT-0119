@@ -1,10 +1,6 @@
 import os
 
 
-def get_token():
-	return os.getenv("TOKEN")
-
-
 orarul_sunetelor = [[480, 540], [550, 610], [620, 680], [690, 750]]
 
 orarul_orelor = [
@@ -34,3 +30,35 @@ orarul_total_al_orelor = {
 denumirea_paritatii = ['pară', 'impară']
 
 zilele_scolare = ['luni', 'marți', 'miercuri', 'joi', 'vineri']
+
+server_owner = 'Daito#8141'
+
+command_channel_id = 753531622757761105
+
+music_channel_id = 754018313029288127
+
+
+TOKEN = ''
+db_name = ''
+db_host = ''
+db_password = ''
+db_port = ''
+db_user = ''
+
+is_local_run = False
+if 'local_config.py' in os.listdir('.'):
+	import local_config
+	TOKEN = local_config.TOKEN
+	db_name = local_config.db_name
+	db_host = local_config.db_host
+	db_password = local_config.db_password
+	db_port = local_config.db_port
+	db_user = local_config.db_user
+	is_local_run = True
+else:
+	TOKEN = os.getenv("TOKEN")
+	db_name = os.getenv("db_name")
+	db_host = os.getenv("db_host")
+	db_password = os.getenv("db_password")
+	db_port = os.getenv("db_port")
+	db_user = os.getenv("db_user")
