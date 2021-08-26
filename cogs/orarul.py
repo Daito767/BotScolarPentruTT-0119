@@ -190,7 +190,7 @@ class Orarul(commands.Cog):
 		embed.add_field(name='Orarul total', value=f'Afișeaza orarul lecțiilor pe toată săptămâna.', inline=True)
 		embed.add_field(name='Orar live', value=f'Pornește afișarea si actualizare orarului live. În acest orar este scirs lecția curentă, lecția urmatoare si timpul rămas până la ele.', inline=True)
 		embed.add_field(name='Oprește orarul', value=f'Oprește ciclul de actualizare a orarului live.', inline=True)
-		embed.add_field(name='Mâine Azi Ieri', value=f'Afișeaza orarul concret a lecțiilor in zilua respectivă.', inline=True)
+		embed.add_field(name='Mâine Azi Ieri', value=f'Afișeaza orarul concret a lecțiilor in ziua respectivă.', inline=True)
 
 		btn_mon = Button(style=ButtonStyle.grey, label='Lun', id='luni')
 		btn_tue = Button(style=ButtonStyle.grey, label='Mar', id='marți')
