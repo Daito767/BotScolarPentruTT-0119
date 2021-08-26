@@ -9,8 +9,8 @@ import discord.ext
 from discord.ext import commands, tasks
 from discord_components import DiscordComponents, Button, ButtonStyle
 
-# ODO: Adauga alternativa a functiilor din orar
-# ODO: Pune in try importarea discord_components pentru stabilitate
+# DO: Adauga alternativa a functiilor din orar
+# DO: Pune in try importarea discord_components pentru stabilitate
 
 intents = discord.Intents().all()
 client = commands.Bot(command_prefix='!', case_insensitive=True)
@@ -139,7 +139,5 @@ for filename in os.listdir('./cogs'):
 if not config.is_local_run:
 	keep_alive.keep_alive()
 	mydb.add_startup_log()
-
-mydb.add_startup_log()  # Pentru testare.
 
 client.run(config.TOKEN)
