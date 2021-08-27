@@ -9,9 +9,6 @@ import discord.ext
 from discord.ext import commands, tasks
 from discord_components import DiscordComponents, Button, ButtonStyle
 
-# DO: Adauga alternativa a functiilor din orar
-# DO: Pune in try importarea discord_components pentru stabilitate
-
 intents = discord.Intents().all()
 client = commands.Bot(command_prefix='!', case_insensitive=True)
 mydb = DBSchool.ConnectToDB(config.db_host, config.db_user, config.db_password, config.db_name)
