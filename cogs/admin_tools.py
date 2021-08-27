@@ -15,7 +15,7 @@ class AdminTools(commands.Cog):
 	@commands.Cog.listener()
 	async def on_ready(self):
 		last_state = main.mydb.get_last_state()
-		if last_state is None or len(last_state) == 0:
+		if len(last_state) == 0:
 			return
 
 		if last_state[2] == 'Se joacă':

@@ -60,4 +60,7 @@ class ConnectToDB:
 		Returneaza ultima stare, in urma unei noi cereri adresate bazei de date.
 		"""
 		self.mycursor.execute(f"SELECT * FROM `BotStates` ORDER BY `Id` DESC LIMIT 1;")
+		result = self.mycursor.fetchall()
+		if len(result) == 0:
+			return ()
 		return self.mycursor.fetchall()[0]
