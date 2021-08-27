@@ -12,6 +12,28 @@ class AdminTools(commands.Cog):
 	def __init__(self, client):
 		self.client = client
 
+	@commands.Cog.listener()
+	async def on_ready(self):
+		last_state = main.mydb.get_last_state()
+		if len(last_state) == 0:
+			return
+
+		if last_state[2] == 'Se joacă':
+			activity_type = discord.Game(last_state[-1])
+		elif last_state[2] == 'Vizionează':
+			activity_type = discord.Activity(type=discord.ActivityType.watching, name=last_state[-1])
+		else:
+			activity_type = discord.Activity(type=discord.ActivityType.listening, name=last_state[-1])
+
+		if last_state[3] == 'Online':
+			status_type = discord.Status.online
+		elif last_state[3] == 'Inactiv':
+			status_type = discord.Status.idle
+		else:
+			status_type = discord.Status.dnd
+
+		await self.client.change_presence(status=status_type, activity=activity_type)
+
 	@commands.command(pass_context=True, aliases=['s', 'statut'])
 	@main.is_command_allowed
 	async def status(self, ctx, *args):
@@ -58,6 +80,7 @@ class AdminTools(commands.Cog):
 
 		activity_type = None
 		status_type = None
+		btn_vallue = ''
 		activity_text = ''
 		status_text = ''
 		while activity_type is None or status_type is None:
@@ -73,12 +96,15 @@ class AdminTools(commands.Cog):
 				if value == so_play.value:
 					activity_type = discord.Game(activity_name)
 					activity_text = so_play.label
+					btn_vallue = so_play.value
 				elif value == so_watch.value:
 					activity_type = discord.Activity(type=discord.ActivityType.watching, name=activity_name)
 					activity_text = so_watch.label
+					btn_vallue = so_watch.value
 				elif value == so_listen.value:
 					activity_type = discord.Activity(type=discord.ActivityType.listening, name=activity_name)
 					activity_text = so_listen.label
+					btn_vallue = so_listen.value
 				elif value == so_online.value:
 					status_type = discord.Status.online
 					status_text = so_online.label
@@ -92,6 +118,7 @@ class AdminTools(commands.Cog):
 		await self.client.change_presence(status=status_type, activity=activity_type)
 
 		embed = discord.Embed(title=f'Setarea statutului', description=f'Salut {ctx.author.mention}. **Ați setat statutul bot-ului cu succes**. Posibil va dura puțin, până când se va aplica setarea: `{activity_text}` cu statutul in rețea: `{status_text}`.', color=discord.Colour.green())
+		main.mydb.save_new_state(btn_vallue, status_text, activity_name)
 		add_field_activity_type(embed)
 		add_field_status_type(embed)
 

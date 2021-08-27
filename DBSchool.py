@@ -13,7 +13,7 @@ def reconnect(func: classmethod):
 			self.mycursor = self.mydb.cursor()
 			self.mycursor.execute(f'USE {self.db_name}')
 
-		func(self, *args, **kwargs)  # Se executa functia originala.
+		return func(self, *args, **kwargs)  # Se executa functia originala.
 
 	new_func.__name__ = func.__name__
 	sig = inspect.signature(func)
@@ -39,8 +39,25 @@ class ConnectToDB:
 	@reconnect
 	def add_startup_log(self):
 		"""
-		Salveaza datata si ora rularii bot-ului.
+		Adauga datata si ora rularii bot-ului.
 		"""
 		dt = datetime.datetime.now(pytz.timezone("Europe/Chisinau"))
 		self.mycursor.execute(f'INSERT INTO `StartUpLogs` (`DataSiOra`) VALUES ("{dt.date()} {dt.time()}")')
 		self.mydb.commit()
+
+	@reconnect
+	def save_new_state(self, activity_type: str, status_type: str, activity_name: str):
+		"""
+		Salveaza statutul impreuna cu datata si ora acestuia.
+		"""
+		dt = datetime.datetime.now(pytz.timezone("Europe/Chisinau"))
+		self.mycursor.execute(f'INSERT INTO `BotStates` (`DataSiOra`, `TipulDeActivitate`, `StareaInRetea`, `Denumirea`) VALUES ("{dt.date()} {dt.time()}", "{activity_type}", "{status_type}", "{activity_name}")')
+		self.mydb.commit()
+
+	@reconnect
+	def get_last_state(self) -> tuple:
+		"""
+		Returneaza ultima stare, in urma unei noi cereri adresate bazei de date.
+		"""
+		self.mycursor.execute(f"SELECT * FROM `BotStates` ORDER BY `Id` DESC LIMIT 1;")
+		return self.mycursor.fetchall()[0]
