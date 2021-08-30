@@ -5,27 +5,27 @@ orarul_sunetelor = [[480, 540], [550, 610], [620, 680], [690, 750]]
 
 orarul_orelor = [
 	{
-		'luni': ['1. Fizica', '2. Decizii M. S. V.', '3. Dispozitive E.', '4. Geografia'],
-		'marți': ['1. Ed. Fizica', '2. L. Română'],
-		'miercuri': ['1. Fizica', '2. Informatica', '3. L. Străină', '4. Matematica'],
-		'joi': ['1. Matematica', '2. Surse A.', '3. L. Română', '4. Surse A.'],
-		'vineri': ['1. Linii de T.', '2. Matematica', '3. Dispozitive E.']
+		'luni': ['1. Istoria', '2. L. Română', '3. Comunicații O.'],
+		'marți': ['1. Nimic', '2. C. A. D.', '3. Comunicații O.', '4. Matematica'],
+		'miercuri': ['1. Ed. pentru soc.', '2. Comunicații O.', '3. Informatica', '4. L. Română'],
+		'joi': ['1. C. A. D.', '2. Matematica'],
+		'vineri': ['1. Ed. Fizică', '2. Cominicații S. R.', '3. Fizica']
 	},
 	{
-		'luni': ['1. Fizica', '2. Decizii M. S. V.', '3. Dispozitive E.', '4. Istoria'],
-		'marți': ['1. Ed. Fizica', '2. L. Română'],
-		'miercuri': ['1. D. P.', '2. Informatica', '3. L. Străină', '4. Matematica'],
-		'joi': ['1. Ed. pentru soc.', '2. Surse A.', '3. L. Română', '4. Surse A.'],
-		'vineri': ['1. Linii de T.', '2. Matematica', '3. Dispozitive E.', '4. Linii de T.']
+		'luni': ['1. Istoria', '2. L. Română', '3. Comunicații O.', '4. D. P.'],
+		'marți': ['1. L. Română', '2. C. A. D.', '3. Comunicații O.', '4. Matematica'],
+		'miercuri': ['1. Geografia', '2. Comunicații O.', '3. Informatica', '4. L. Română'],
+		'joi': ['1. C. A. D.', '2. Matematica', '2. Matematica'],
+		'vineri': ['1. Ed. Fizică', '2. Cominicații S. R.', '3. Fizica']
 	}
 ]
 
 orarul_total_al_orelor = {
-		'luni': '\n1. Fizica\n2. Decizii M. S. V.\n3. Dispozitive E.\n4. Istoria\\Geografia',
-		'marți': '\n1. Ed. Fizica\n2. L. Română',
-		'miercuri': '\n1. D. P.\\Fizica\n2. Informatica\n3. L. Străină\n4. Matematica',
-		'joi': '\n1. Ed. pentru soc.\\Matematica\n2. Surse A.\n3. L. Română\n4. Surse A.',
-		'vineri': '\n1. Linii de T.\n2. Matematica\n3. Dispozitive E.\n4. Linii de T.\\Nimic'}
+		'luni': '\n1. Istoria\\Fizica\n2. L. Străină\n3. Comunicații O.\n4. Nimic\\D. P.',
+		'marți': '\n1. Nimic\\L. Română\n2. C. A. D.\n3. Comunicații O.\n4. Matematica',
+		'miercuri': '\n1. Ed. pentru soc.\\Geografia\n2. Comunicații O.\n3. Informatica\n4. L. Română',
+		'joi': '\n1. C. A. D.\n2. Matematica\n3. Nimic\\Matematica',
+		'vineri': '\n1. Ed. Fizică\n2. Cominicații S. R.\n4. Fizica'}
 
 denumirea_paritatii = ['pară', 'impară']
 
