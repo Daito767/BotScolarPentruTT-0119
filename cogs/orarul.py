@@ -44,7 +44,7 @@ async def start_live_schedule(editable_msg, mention):
 		return n
 
 	def format_dt_now(dt):
-		return f'{fomat_len(dt.day)},{fomat_len(dt.month)},{fomat_len(dt.year)}   {fomat_len(dt.hour)}:{fomat_len(dt.minute)}:{fomat_len(dt.second)}:{fomat_len(dt.microsecond)}'
+		return f'{fomat_len(dt.day)} {fomat_len(dt.month)} {fomat_len(dt.year)}   {fomat_len(dt.hour)}:{fomat_len(dt.minute)}:{fomat_len(dt.second)}:{fomat_len(dt.microsecond)}'
 
 	if main.num_of_live_schedule_threads > 10:
 		main.num_of_live_schedule_threads = 0
