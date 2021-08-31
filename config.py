@@ -37,7 +37,7 @@ command_channel_id = 753531622757761105
 
 music_channel_id = 754018313029288127
 
-bot_version = 2.5
+bot_version = '2.6'
 
 
 TOKEN = ''

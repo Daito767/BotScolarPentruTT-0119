@@ -10,7 +10,7 @@ from discord_components import DiscordComponents, Button, ButtonStyle
 
 
 def get_schedule_on_weekday(mention, day):
-	return f'Salut {mention}. Acesta este orarul lecțiilor pe {day}.{config.orarul_total_al_orelor[day]}'
+	return f'Salut {mention}. Acesta este orarul lecțiilor pe **{day}**.{config.orarul_total_al_orelor[day]}'
 
 
 def get_time_schedule(mention):
@@ -130,7 +130,7 @@ def get_tomorrow_schedule(mention):
 
 	day_name = config.zilele_scolare[day]
 	imparitate = dt_now.isocalendar()[1] % 2
-	msg_text += f'Acesta este orarul în săptămână {config.denumirea_paritatii[imparitate]} a lecțiilor pe {day_name}.'
+	msg_text += f'Acesta este orarul în săptămână **{config.denumirea_paritatii[imparitate]}** a lecțiilor pe **{day_name}**.'
 	for lesson in config.orarul_orelor[imparitate][day_name]:
 		msg_text += f'\n{lesson}'
 	return msg_text
@@ -147,7 +147,7 @@ def get_today_schedule(mention):
 		return f'Salut {mention}. Azi este sâmbătă.'
 
 	day_name = config.zilele_scolare[day]
-	msg_text = f'Acesta este orarul în săptămână {config.denumirea_paritatii[imparitate]} a lecțiilor pe {day_name}.'
+	msg_text = f'Acesta este orarul în săptămână **{config.denumirea_paritatii[imparitate]}** a lecțiilor pe **{day_name}**.'
 	for lesson in config.orarul_orelor[imparitate][day_name]:
 		msg_text += f'\n{lesson}'
 	return msg_text
@@ -170,7 +170,7 @@ def get_yesterday_schedule(mention):
 
 	day_name = config.zilele_scolare[day]
 	imparitate = dt_now.isocalendar()[1] % 2
-	msg_text += f'Acesta este orarul în săptămână {config.denumirea_paritatii[imparitate]} a lecțiilor pe {day_name}.'
+	msg_text += f'Acesta este orarul în săptămână **{config.denumirea_paritatii[imparitate]}** a lecțiilor pe **{day_name}**.'
 	for lesson in config.orarul_orelor[imparitate][day_name]:
 		msg_text += f'\n{lesson}'
 	return msg_text
