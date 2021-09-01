@@ -226,7 +226,9 @@ class Orarul(commands.Cog):
 			await ctx.message.delete()
 		else:
 			await the_bot_msg.delete()
-			await ctx.message.delete()
+			if not ctx.channel.type is discord.ChannelType.private:
+				await ctx.message.delete()
+
 			if interacted_ctx.component.id in config.zilele_scolare:
 				await interacted_ctx.channel.send(get_schedule_on_weekday(interacted_ctx.author.mention, interacted_ctx.component.id))
 			elif interacted_ctx.component.id == btn_sunet.id:
