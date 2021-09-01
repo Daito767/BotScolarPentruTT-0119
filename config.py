@@ -15,7 +15,7 @@ orarul_orelor = [
 		'luni': ['1. Istoria', '2. L. Română', '3. Comunicații O.', '4. D. P.'],
 		'marți': ['1. L. Română', '2. C. A. D.', '3. Comunicații O.', '4. Matematica'],
 		'miercuri': ['1. Geografia', '2. Comunicații O.', '3. Informatica', '4. L. Română'],
-		'joi': ['1. C. A. D.', '2. Matematica', '2. Matematica'],
+		'joi': ['1. C. A. D.', '2. Matematica', '3. Matematica'],
 		'vineri': ['1. Ed. Fizică', '2. Cominicații S. R.', '3. Fizica']
 	}
 ]
