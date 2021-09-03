@@ -89,7 +89,7 @@ async def start_live_schedule(editable_msg, mention):
 			if config.orarul_sunetelor[count][0] <= time_now < config.orarul_sunetelor[count][1]:
 				minutes = config.orarul_sunetelor[count][1] - time_now - 1
 				seconds = 60 - dt_now.second
-				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count]}` - **Pauză in {minutes}:{seconds}**'
+				editable_msg_text += f'\n**`{config.orarul_orelor[imparitate][day_name][count]}`** - **Pauză in {minutes}:{seconds}**'
 				count += 1
 			# Se asigura prinatarea corecta a ultimei lectii.
 			elif count == len(config.orarul_orelor[imparitate][day_name])-1:
@@ -100,7 +100,7 @@ async def start_live_schedule(editable_msg, mention):
 				minutes = config.orarul_sunetelor[count + 1][0] - time_now - 1
 				seconds = 60 - dt_now.second
 				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count]}`'
-				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count + 1]}` - **Lecție in {minutes}:{seconds}**'
+				editable_msg_text += f'\n**`{config.orarul_orelor[imparitate][day_name][count + 1]}`** - **Lecție in {minutes}:{seconds}**'
 				count += 2
 			else:
 				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count]}`'
