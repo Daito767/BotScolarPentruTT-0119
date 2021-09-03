@@ -4,7 +4,7 @@ orarul_sunetelor = [[480, 550], [560, 630], [640, 710], [720, 790]]
 
 orarul_orelor = [
 	{
-		'luni': ['1. Istoria', '2. L. Străină', '3. Comunicații O.', '4. D. P.'],
+		'luni': ['1. Fizica', '2. L. Străină', '3. Comunicații O.', '4. D. P.'],
 		'marți': ['1. L. Română', '2. C. A. D.', '3. Comunicații O.', '4. Matematica'],
 		'miercuri': ['1. Geografia', '2. Comunicații O.', '3. Informatica', '4. L. Română'],
 		'joi': ['1. C. A. D.', '2. Matematica', '3. Matematica'],
