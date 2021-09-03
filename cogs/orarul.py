@@ -51,7 +51,7 @@ async def start_live_schedule(editable_msg, mention):
 
 	main.num_of_live_schedule_threads += 1
 	num_of_threads = main.num_of_live_schedule_threads
-	time_delta = datetime.datetime(2021, 9, 3, 9, 9, 50) - datetime.datetime.now()  # Pentru testare.
+	# time_delta = datetime.datetime(2021, 9, 3, 9, 9, 50) - datetime.datetime.now()  # Pentru testare.
 	editable_msg_text = ''
 
 	while True:
@@ -60,7 +60,7 @@ async def start_live_schedule(editable_msg, mention):
 			return
 
 		dt_now = datetime.datetime.now(pytz.timezone("Europe/Chisinau"))
-		dt_now = datetime.datetime.now() + time_delta  # Pentru testare.
+		#  dt_now = datetime.datetime.now() + time_delta  # Pentru testare.
 		time_now = dt_now.hour * 60 + dt_now.minute
 		imparitate = dt_now.isocalendar()[1] % 2
 		day = dt_now.weekday()
