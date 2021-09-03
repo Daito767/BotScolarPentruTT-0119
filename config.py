@@ -1,7 +1,6 @@
 import os
 
-#  Pentru luni: orarul_sunetelor = [[480, 550], [560, 630], [640, 710], [720, 790]]
-orarul_sunetelor = [[480, 540], [550, 610], [620, 680], [690, 750]]
+orarul_sunetelor = [[480, 550], [560, 630], [640, 710], [720, 790]]
 
 orarul_orelor = [
 	{
@@ -21,11 +20,11 @@ orarul_orelor = [
 ]
 
 orarul_total_al_orelor = {
-		'luni': '\n1. Istoria\\Fizica\n2. L. Străină\n3. Comunicații O.\n4. Nimic\\D. P.',
-		'marți': '\n1. Nimic\\L. Română\n2. C. A. D.\n3. Comunicații O.\n4. Matematica',
-		'miercuri': '\n1. Ed. pentru soc.\\Geografia\n2. Comunicații O.\n3. Informatica\n4. L. Română',
-		'joi': '\n1. C. A. D.\n2. Matematica\n3. Nimic\\Matematica',
-		'vineri': '\n1. Ed. Fizică\n2. Cominicații S. R.\n4. Fizica'}
+		'luni': '\n`1. Istoria\\Fizica`\n`2. L. Străină`\n`3. Comunicații O.`\n`4. Nimic\\D. P.`',
+		'marți': '\n`1. Nimic\\L. Română`\n`2. C. A. D.`\n`3. Comunicații O.`\n`4. Matematica`',
+		'miercuri': '\n`1. Ed. pentru soc.\\Geografia`\n`2. Comunicații O.`\n`3. Informatica`\n`4. L. Română`',
+		'joi': '\n`1. C. A. D.`\n`2. Matematica`\n`3. Nimic\\Matematica`',
+		'vineri': '\n`1. Ed. Fizică`\n`2. Cominicații S. R.`\n`4. Fizica`'}
 
 denumirea_paritatii = ['pară', 'impară']
 
@@ -37,7 +36,7 @@ command_channel_id = 753531622757761105
 
 music_channel_id = 754018313029288127
 
-bot_version = '2.6'
+bot_version = '2.7'
 
 
 TOKEN = ''
