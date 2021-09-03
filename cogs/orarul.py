@@ -51,7 +51,7 @@ async def start_live_schedule(editable_msg, mention):
 
 	main.num_of_live_schedule_threads += 1
 	num_of_threads = main.num_of_live_schedule_threads
-	# time_delta = datetime.datetime(2021, 8, 16, 11, 29, 50) - datetime.datetime.now()  # Pentru testare.
+	time_delta = datetime.datetime(2021, 9, 3, 9, 9, 50) - datetime.datetime.now()  # Pentru testare.
 	editable_msg_text = ''
 
 	while True:
@@ -60,53 +60,53 @@ async def start_live_schedule(editable_msg, mention):
 			return
 
 		dt_now = datetime.datetime.now(pytz.timezone("Europe/Chisinau"))
-		# dt_now = datetime.datetime.now() + time_delta  # Pentru testare.
+		dt_now = datetime.datetime.now() + time_delta  # Pentru testare.
 		time_now = dt_now.hour * 60 + dt_now.minute
 		imparitate = dt_now.isocalendar()[1] % 2
 		day = dt_now.weekday()
 
 		if day == 5:
-			await editable_msg.edit(content=f"Salut {mention}. Azi este sambată.")
+			await editable_msg.edit(content=f"Salut {mention}. **Azi este sambată.**")
 			return
 		if day == 6:
-			await editable_msg.edit(content=f"Salut {mention}. Azi este duminică.")
+			await editable_msg.edit(content=f"Salut {mention}. **Azi este duminică.**")
 			return
 
 		day_name = config.zilele_scolare[day]
 
 		if time_now < config.orarul_sunetelor[0][0]:
-			await editable_msg.edit(content=f'Salut {mention}. Lecțiile incă nu s-au inceput.')
+			await editable_msg.edit(content=f'Salut {mention}. **Lecțiile incă nu s-au inceput**.')
 			return
 		if config.orarul_sunetelor[len(config.orarul_orelor[imparitate][day_name]) - 1][1] <= time_now:
-			await editable_msg.edit(content=f'Salut {mention}. Lecțiile s-au finalizat.')
+			await editable_msg.edit(content=f'Salut {mention}. **Lecțiile s-au finalizat**.')
 			return
 
 		# Cilul in care se contruiste mesaju pentru editare.
 		count = 0
-		editable_msg_text = f'Salut {mention}. Aceasta este orarul extins in săptămână {config.denumirea_paritatii[imparitate]} a lecțtiilor pe {day_name}.'
+		editable_msg_text = f'Salut {mention}. Aceasta este orarul **Live** in săptămână {config.denumirea_paritatii[imparitate]} a lecțtiilor pe {day_name}.'
 		# Se verifica daca lectia deja decurge.
 		while count < len(config.orarul_orelor[imparitate][day_name]):
 			if config.orarul_sunetelor[count][0] <= time_now < config.orarul_sunetelor[count][1]:
 				minutes = config.orarul_sunetelor[count][1] - time_now - 1
 				seconds = 60 - dt_now.second
-				editable_msg_text += f'\n**{config.orarul_orelor[imparitate][day_name][count]}** - Pauză in {minutes}:{seconds}'
+				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count]}` - **Pauză in {minutes}:{seconds}**'
 				count += 1
 			# Se asigura prinatarea corecta a ultimei lectii.
 			elif count == len(config.orarul_orelor[imparitate][day_name])-1:
-				editable_msg_text += f'\n{config.orarul_orelor[imparitate][day_name][count]}'
+				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count]}`'
 				count += 1
 			# Se verifica daca acum este pauza.
 			elif config.orarul_sunetelor[count][1] <= time_now < config.orarul_sunetelor[count + 1][0]:
 				minutes = config.orarul_sunetelor[count + 1][0] - time_now - 1
 				seconds = 60 - dt_now.second
-				editable_msg_text += f'\n{config.orarul_orelor[imparitate][day_name][count]}'
-				editable_msg_text += f'\n**{config.orarul_orelor[imparitate][day_name][count + 1]}** - Lecție in {minutes}:{seconds}'
+				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count]}`'
+				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count + 1]}` - **Lecție in {minutes}:{seconds}**'
 				count += 2
 			else:
-				editable_msg_text += f'\n{config.orarul_orelor[imparitate][day_name][count]}'
+				editable_msg_text += f'\n`{config.orarul_orelor[imparitate][day_name][count]}`'
 				count += 1
 
-		await editable_msg.edit(content=editable_msg_text + '\n' + format_dt_now(dt_now))
+		await editable_msg.edit(content=editable_msg_text + '\n' + '*' + format_dt_now(dt_now) + '*')
 		await asyncio.sleep(1)
 
 
@@ -122,17 +122,17 @@ def get_tomorrow_schedule(mention):
 	if day == 6:
 		dt_now += datetime.timedelta(days=1)
 		day = dt_now.weekday()
-		msg_text += f'Mâine este duminică.'
+		msg_text += f'**Mâine este duminică. '
 	elif day == 5:
 		dt_now += datetime.timedelta(days=2)
 		day = dt_now.weekday()
-		msg_text += f'Mâine este sâmbătă.'
+		msg_text += f'**Mâine este sâmbătă.** '
 
 	day_name = config.zilele_scolare[day]
 	imparitate = dt_now.isocalendar()[1] % 2
 	msg_text += f'Acesta este orarul în săptămână **{config.denumirea_paritatii[imparitate]}** a lecțiilor pe **{day_name}**.'
 	for lesson in config.orarul_orelor[imparitate][day_name]:
-		msg_text += f'\n{lesson}'
+		msg_text += f'\n`{lesson}`'
 	return msg_text
 
 
@@ -142,14 +142,14 @@ def get_today_schedule(mention):
 	imparitate = dt_now.isocalendar()[1] % 2
 
 	if day == 6:
-		return f'Salut {mention}. Azi este duminică.'
+		return f'Salut {mention}. **Azi este duminică.**'
 	if day == 5:
-		return f'Salut {mention}. Azi este sâmbătă.'
+		return f'Salut {mention}. **Azi este sâmbătă.**'
 
 	day_name = config.zilele_scolare[day]
 	msg_text = f'Acesta este orarul în săptămână **{config.denumirea_paritatii[imparitate]}** a lecțiilor pe **{day_name}**.'
 	for lesson in config.orarul_orelor[imparitate][day_name]:
-		msg_text += f'\n{lesson}'
+		msg_text += f'\n`{lesson}`'
 	return msg_text
 
 
@@ -162,17 +162,17 @@ def get_yesterday_schedule(mention):
 	if day == 6:
 		dt_now += datetime.timedelta(days=-1)
 		day = dt_now.weekday()
-		msg_text = f'Salut {mention}. Ieri a fost duminică.\n'
+		msg_text = f'Salut {mention}. **Ieri a fost duminică.** '
 	elif day == 5:
 		dt_now += datetime.timedelta(days=-2)
 		day = dt_now.weekday()
-		msg_text = f'Salut {mention}. Ieri a fost sâmbătă.\n'
+		msg_text = f'Salut {mention}. **Ieri a fost sâmbătă.** '
 
 	day_name = config.zilele_scolare[day]
 	imparitate = dt_now.isocalendar()[1] % 2
 	msg_text += f'Acesta este orarul în săptămână **{config.denumirea_paritatii[imparitate]}** a lecțiilor pe **{day_name}**.'
 	for lesson in config.orarul_orelor[imparitate][day_name]:
-		msg_text += f'\n{lesson}'
+		msg_text += f'\n`{lesson}`'
 	return msg_text
 
 
