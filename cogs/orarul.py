@@ -83,7 +83,7 @@ async def start_live_schedule(editable_msg, mention):
 
 		# Cilul in care se contruiste mesaju pentru editare.
 		count = 0
-		editable_msg_text = f'Salut {mention}. Aceasta este orarul **Live** in săptămână {config.denumirea_paritatii[imparitate]} a lecțtiilor pe {day_name}.'
+		editable_msg_text = f'Salut {mention}. Aceasta este orarul **Live** in săptămână **{config.denumirea_paritatii[imparitate]}** a lecțtiilor pe **{day_name}**.'
 		# Se verifica daca lectia deja decurge.
 		while count < len(config.orarul_orelor[imparitate][day_name]):
 			if config.orarul_sunetelor[count][0] <= time_now < config.orarul_sunetelor[count][1]:
