@@ -23,8 +23,8 @@ orarul_total_al_orelor = {
 		'luni': '\n`1. Istoria\\Fizica`\n`2. L. Străină`\n`3. Comunicații O.`\n`4. Nimic\\D. P.`',
 		'marți': '\n`1. Nimic\\L. Română`\n`2. C. A. D.`\n`3. Comunicații O.`\n`4. Matematica`',
 		'miercuri': '\n`1. Ed. pentru soc.\\Geografia`\n`2. Comunicații O.`\n`3. Informatica`\n`4. L. Română`',
-		'joi': '\n`1. C. A. D.`\n`2. Matematica`\n`3. Nimic\\Matematica`',
-		'vineri': '\n`1. Ed. Fizică`\n`2. Cominicații S. R.`\n`4. Fizica`'}
+		'joi': '\n`1. C. A. D.`\n`2. Fizica`\n`3. Matematica`\n`4. Nimic\\Matematica`',
+		'vineri': '\n`1. Ed. Fizică`\n`2. Cominicații S. R.`'}
 
 denumirea_paritatii = ['pară', 'impară']
 
