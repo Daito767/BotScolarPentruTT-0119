@@ -52,8 +52,9 @@ async def on_ready():
 async def on_message(message: discord.Message):
 	if message.author.bot and message.channel.id != config.music_channel_id and message.channel.id != config.command_channel_id:
 		if str(message.author) != 'ZyBot#3764' and str(message.author) != 'DyBot#6312':
-			await message.delete()
-			return
+			if str(message.author) != 'MEE6#4876' and message.content[0] != 'G' and message.content[1] != 'G':
+				await message.delete()
+				return
 
 	await client.process_commands(message)
 
