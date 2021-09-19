@@ -122,7 +122,7 @@ def get_tomorrow_schedule(mention):
 	if day == 6:
 		dt_now += datetime.timedelta(days=1)
 		day = dt_now.weekday()
-		msg_text += f'**Mâine este duminică. '
+		msg_text += f'**Mâine este duminică.** '
 	elif day == 5:
 		dt_now += datetime.timedelta(days=2)
 		day = dt_now.weekday()
@@ -215,7 +215,7 @@ class Orarul(commands.Cog):
 		components = [week_days, btn_special, btns_orar_live, btn_days]
 		the_bot_msg = await ctx.channel.send(embed=embed, components=components)
 
-		# Afigurarea functionalitatii butoanelor.
+		# Asigurarea functionalitatii butoanelor.
 		def check(the_interacted_ctx):
 			return the_interacted_ctx.message.id == the_bot_msg.id
 
@@ -246,6 +246,37 @@ class Orarul(commands.Cog):
 				await interacted_ctx.channel.send(get_today_schedule(interacted_ctx.author.mention))
 			elif interacted_ctx.component.id == btn_ieri.id:
 				await interacted_ctx.channel.send(get_yesterday_schedule(interacted_ctx.author.mention))
+
+	@commands.command(pass_context=True)
+	@main.is_command_allowed
+	async def maine(self, ctx):
+		await ctx.channel.send(get_tomorrow_schedule(ctx.author.mention))
+
+	@commands.command(pass_context=True)
+	@main.is_command_allowed
+	async def azi(self, ctx):
+		await ctx.channel.send(get_today_schedule(ctx.author.mention))
+
+	@commands.command(pass_context=True)
+	@main.is_command_allowed
+	async def ieri(self, ctx):
+		await ctx.channel.send(get_yesterday_schedule(ctx.author.mention))
+
+	@commands.command(pass_context=True)
+	@main.is_command_allowed
+	async def total(self, ctx):
+		await ctx.channel.send(embed=get_schedule_on_all_weekdays(ctx.author.mention))
+
+	@commands.command(pass_context=True)
+	@main.is_command_allowed
+	async def sunet(self, ctx):
+		await ctx.channel.send(get_time_schedule(ctx.author.mention))
+
+	@commands.command(pass_context=True)
+	@main.is_command_allowed
+	async def live(self, ctx):
+		editable_msg = await ctx.channel.send('Loading ...')
+		await start_live_schedule(editable_msg, ctx.author.mention)
 
 
 def setup(client):
