@@ -31,7 +31,7 @@ class SchoolTools(commands.Cog):
 			if sys_now == 'd':
 				value = int(default_value)
 				rest_result = ''
-				result += f'\n{sys_now}->{sys_next}'
+				result += f'\n\n{sys_now}->{sys_next}'
 				while value > 0:
 					new_value = int(value / enum_systems_len[sys_next])
 					new_rest = rest = value - new_value * enum_systems_len[sys_next]
