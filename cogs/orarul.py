@@ -14,7 +14,7 @@ def get_schedule_on_weekday(mention, day):
 
 
 def get_time_schedule(mention):
-	def fomrat(num):
+	def format(num):
 		num = str(num)
 		if len(num) == 1:
 			num = '0' + num
@@ -23,7 +23,7 @@ def get_time_schedule(mention):
 	text = f'Salut {mention}. Acesta este orarul sunetelor.'
 	lesson_num = 1
 	for lesson in config.orarul_sunetelor:
-		text += f'\n`{lesson_num}. {fomrat(int(lesson[0]/60))}:{fomrat(lesson[0]%60)} - {fomrat(int(lesson[1]/60))}:{fomrat(lesson[1]%60)}`'
+		text += f'\n`{lesson_num}. {format(int(lesson[0]/60))}:{format(lesson[0]%60)} - {format(int(lesson[1]/60))}:{format(lesson[1]%60)}`'
 		lesson_num += 1
 	return text
 
