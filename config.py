@@ -1,17 +1,17 @@
 import os
 
-orarul_sunetelor = [[480, 560], [570, 650], [660, 740], [760, 840]]
+orarul_sunetelor = [[480, 550], [560, 630], [640, 710], [730, 800]]
 
 orarul_orelor = [
 	{
-		'luni': ['1. Ed. Fizică', '2. L. Străină', '3. isteme T. M.'],
+		'luni': ['1. Ed. Fizică', '2. L. Străină', '3. Sisteme T. M.'],
 		'marți': ['1. Nimic', '2. Filosofie', '3. Matematica', '4. Bazele L. D.'],
 		'miercuri': ['1. L. Română', '2. Informatica', '3. Sisteme R. TV', '4. L. Română'],
 		'joi': ['1. Tehn. Com.', '2. Matematica', '3. Istoria'],
 		'vineri': ['1. Nimic', '2. Sisteme T. M.', '3. Fizica', '4. Fizica']
 	},
 	{
-		'luni': ['1. Ed. Fizică', '2. L. Străină', '3. isteme T. M.'],
+		'luni': ['1. Ed. Fizică', '2. L. Străină', '3. Sisteme T. M.'],
 		'marți': ['1. Geografia', '2. Filosofie', '3. Matematica', '4. Bazele L. D.'],
 		'miercuri': ['1. Ed. pentru soc.', '2. Informatica', '3. Sisteme R. TV', '4. L. Română'],
 		'joi': ['1. Tehn. Com.', '2. Matematica', '3. Matematica'],
