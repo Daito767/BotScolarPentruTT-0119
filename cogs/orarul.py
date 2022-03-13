@@ -160,11 +160,11 @@ def get_yesterday_schedule(mention):
 	msg_text = f'Salut {mention}. '
 
 	if day == 6:
-		dt_now += datetime.timedelta(days=-1)
+		dt_now += datetime.timedelta(days=-2)
 		day = dt_now.weekday()
 		msg_text = f'Salut {mention}. **Ieri a fost duminică.** '
 	elif day == 5:
-		dt_now += datetime.timedelta(days=-2)
+		dt_now += datetime.timedelta(days=-1)
 		day = dt_now.weekday()
 		msg_text = f'Salut {mention}. **Ieri a fost sâmbătă.** '
 
