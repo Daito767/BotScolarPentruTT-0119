@@ -1,6 +1,6 @@
 import os
 
-orarul_sunetelor = [[480, 550], [560, 630], [640, 710], [730, 800]]
+orarul_sunetelor = [[480, 550], [560, 630], [640, 710], [720, 790]]
 
 orarul_orelor = [
 	{
